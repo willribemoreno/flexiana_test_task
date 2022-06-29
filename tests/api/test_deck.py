@@ -1,0 +1,106 @@
+from deck_endpoints.deck_endpoints import DeckCalls
+
+def test_deck_creation_get_param_enabled():
+    # print('deck creation get parameter enabled')
+    deck, deck_status_code = create_deck_get_parameter(jokers_enabled=True)
+    print(f'Status code: {deck_status_code}')
+    # print(deck)
+    # print(deck['deck_id'])
+    # print('################################# ')
+    assert deck_status_code == 200
+
+print('deck creation get parameter disabled')
+deck2, deck_status_code2 = create_deck_get_parameter(jokers_enabled=False)
+print(f'Status code: {deck_status_code2}')
+print(deck2)
+print(deck2['deck_id'])
+print('################################# ')
+#
+#
+# print('deck creation post parameter enabled')
+# deck3, deck_status_code3 = create_deck_post_parameter(jokers_enabled=True)
+# print(f'Status code: {deck_status_code3}')
+# print(deck3)
+# print(deck3['deck_id'])
+# print('################################# ')
+#
+# print('deck creation post parameter disabled')
+# deck4, deck_status_code4 = create_deck_post_parameter(jokers_enabled=False)
+# print(f'Status code: {deck_status_code4}')
+# print(deck4)
+# print(deck4['deck_id'])
+# print('################################# ')
+#
+# print('reshuffle cards')
+# reshuffle, reshuffle_status_code = reshuffle_deck(deck['deck_id'])
+# print(f'Status code: {reshuffle_status_code}')
+# print(reshuffle)
+# print('################################# ')
+#
+# print('draw 3 cards')
+# drawn_card, drawn_card_status_code = draw_cards(deck['deck_id'], 3)
+# print(f'Status code: {drawn_card_status_code}')
+# print(drawn_card)
+# print('################################# ')
+#
+# print('draw 5 cards')
+# drawn_card, drawn_card_status_code = draw_cards(deck['deck_id'], 5)
+# drawn_cards_list1 = get_drawn_card_codes(drawn_card)
+# print(f'Status code: {drawn_card_status_code}')
+# print(drawn_cards_list1)
+# print('################################# ')
+#
+# print('Pile1 creation')
+# pile1, pile1_status_code = add_to_pile(deck['deck_id'], 'pile1', drawn_cards_list1)
+# print(f'Status code: {pile1_status_code}')
+# print(pile1)
+# print('################################# ')
+#
+# print('draw 5 cards again')
+# drawn_card2, drawn_card_status_code2 = draw_cards(deck['deck_id'], 5)
+# drawn_cards_list2 = get_drawn_card_codes(drawn_card2)
+# print(f'Status code: {drawn_card_status_code2}')
+# print(drawn_cards_list2)
+# print('################################# ')
+#
+# print('Pile2 creation')
+# pile2, pile2_status_code = add_to_pile(deck['deck_id'], 'pile2', drawn_cards_list2)
+# print(f'Status code: {pile2_status_code}')
+# print(pile2)
+# print('################################# ')
+#
+# print('Listing cards in pile 1')
+# pile1_list, pile1_list_status_code = list_card_from_pile(deck['deck_id'], 'pile1')
+# print(f'Status code: {pile1_list_status_code}')
+# print(pile1_list)
+# print('################################# ')
+#
+# print('Listing cards in pile 2')
+# pile2_list, pile2_list_status_code = list_card_from_pile(deck['deck_id'], 'pile2')
+# print(f'Status code: {pile2_list_status_code}')
+# print(pile2_list)
+# print('################################# ')
+#
+# print('Shuffle pile1')
+# shuffle_pile1, shuffle_pile1_status_code = shuffle_pile(deck['deck_id'], 'pile1')
+# print(f'Status code: {shuffle_pile1_status_code}')
+# print(shuffle_pile1)
+# print('################################# ')
+#
+# print('Shuffle pile2')
+# shuffle_pile2, shuffle_pile2_status_code = shuffle_pile(deck['deck_id'], 'pile2')
+# print(f'Status code: {shuffle_pile2_status_code}')
+# print(shuffle_pile2)
+# print('################################# ')
+#
+# print('Drawing from pile1')
+# shuffle_pile1, shuffle_pile1_status_code = drawing_from_pile(deck['deck_id'], 'pile1', count=2)
+# print(f'Status code: {shuffle_pile1_status_code}')
+# print(shuffle_pile1)
+# print('################################# ')
+#
+# print('Drawing from pile2')
+# shuffle_pile2, shuffle_pile2_status_code = drawing_from_pile(deck['deck_id'], 'pile2', count=3)
+# print(f'Status code: {shuffle_pile2_status_code}')
+# print(shuffle_pile2)
+# print('################################# ')
