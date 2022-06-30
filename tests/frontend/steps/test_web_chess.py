@@ -51,3 +51,8 @@ def step_impl(driver, from_to_moves_blue):
 def step_impl(driver, from_to_moves_orange):
     coordinates = (6, 4)
     home.make_move(driver, from_to_moves_orange, move_count=2, new_coordinates=coordinates)
+
+
+@then('the users piece must be moved correctly')
+def step_impl(driver, from_to_moves_orange):
+    home.assert_moves(driver, from_to_moves_orange, move_count=2)

@@ -73,8 +73,14 @@ class HomePage:
                 break
 
         available_gray_slot_pos_dict[chosen_move].click()
-        from_to_moves_orange['from'] = {move_count: f'{x}, {y}'}
-        from_to_moves_orange['to'] = {move_count: chosen_move}
+        if 'from' in from_to_moves_orange.keys():
+            from_to_moves_orange['from'].update({move_count: f'{x}, {y}'})
+        else:
+            from_to_moves_orange['from'] = {move_count: f'{x}, {y}'}
+        if 'to' in from_to_moves_orange.keys():
+            from_to_moves_orange['to'].update({move_count: chosen_move})
+        else:
+            from_to_moves_orange['to'] = {move_count: chosen_move}
 
     @staticmethod
     def make_move(driver, from_to_moves_orange, move_count, coordinates=None, new_coordinates=None):
@@ -101,12 +107,15 @@ class HomePage:
                 break
 
         available_gray_slot_pos_dict[chosen_move].click()
-        if len(from_to_moves_orange) == 0:
-            from_to_moves_orange['from'] = {move_count: f'{x}, {y}'}
-            from_to_moves_orange['to'] = {move_count: chosen_move}
-        else:
+        if 'from' in from_to_moves_orange.keys():
             from_to_moves_orange['from'].update({move_count: f'{x}, {y}'})
+        else:
+            from_to_moves_orange['from'] = {move_count: f'{x}, {y}'}
+
+        if 'to' in from_to_moves_orange.keys():
             from_to_moves_orange['to'].update({move_count: chosen_move})
+        else:
+            from_to_moves_orange['to'] = {move_count: chosen_move}
 
     @staticmethod
     def create_position_x_element_dict(element):
@@ -169,7 +178,11 @@ class HomePage:
         available_gray_slot_pos_dict = HomePage.create_position_x_element_dict(available_gray_coordinates)
 
         assert from_to_moves_orange['from'][move_count] in available_gray_slot_pos_dict.keys()
-        assert from_to_moves_orange['to'][move_count] not in orange_pieces_dict.keys()
+        if move_count >= 2:
+            # if counter is more than 2, the computer was already take the user's piece
+            assert from_to_moves_orange['to'][move_count] not in orange_pieces_dict.keys()
+        else:
+            assert from_to_moves_orange['to'][move_count] in orange_pieces_dict.keys()
 
     @staticmethod
     def check_if_computer_piece_was_moved(driver, from_to_moves_blue, move_count):
@@ -203,7 +216,10 @@ class HomePage:
                 if new_default_pos in blue_pos_dict.keys():
                     break
                 if index_actual == len(blue_pos_dict) - 1:
-                    from_to_moves_blue['from'].update({move_count: new_default_pos})
+                    if 'from' in from_to_moves_blue.keys():
+                        from_to_moves_blue['from'].update({move_count: new_default_pos})
+                    else:
+                        from_to_moves_blue['from'] = {move_count: new_default_pos}
 
         for from_move in from_to_moves_blue['from'].keys():
             if from_move == move_count:
@@ -225,7 +241,10 @@ class HomePage:
 
         for index in range(len(possible_moves_available)):
             if possible_moves_available[index] in blue_pos_dict.keys():
-                from_to_moves_blue['to'].update({move_count: possible_moves_available[index]})
+                if 'to' in from_to_moves_blue.keys():
+                    from_to_moves_blue['to'].update({move_count: possible_moves_available[index]})
+                else:
+                    from_to_moves_blue['to'] = {move_count: possible_moves_available[index]}
                 break
 
         # once we have the from / to keys in from_to_moves_blue dict, the piece were moved properly

@@ -29,4 +29,4 @@ Scenario: Make your second move
   And he starts a new game by clicking on restart button
   And he makes his first move
   When he makes his second move
-  Then the users piece must be moved properly
+  Then the users piece must be moved correctly
