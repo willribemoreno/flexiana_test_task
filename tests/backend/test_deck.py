@@ -1,4 +1,4 @@
-import deck_endpoints.deck_endpoints as deck_endpoints
+from tests.backend.deck_endpoints import deck_endpoints as deck_endpoints
 
 
 # the same test is being performed here, but by different ways
