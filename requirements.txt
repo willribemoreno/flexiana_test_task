@@ -1,0 +1,5 @@
+# Required libraries to run the tests
+selenium>=4.3.0
+requests>=2.27.1
+pytest>=6.2.4
+pytest-bdd-5.0.0
