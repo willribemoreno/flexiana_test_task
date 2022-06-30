@@ -250,3 +250,14 @@ class HomePage:
         # once we have the from / to keys in from_to_moves_blue dict, the piece were moved properly
         assert move_count in from_to_moves_blue['from'].keys()
         assert move_count in from_to_moves_blue['to'].keys()
+
+    @staticmethod
+    def assert_taken_piece_removal(driver, from_to_moves_orange, count):
+        removed_piece_coordinate = from_to_moves_orange['to'][count]
+        web_actions = WebActions(driver)
+        orange_pieces = web_actions.wait_until_elements_visible(mapping.IMG_ORANGE_PIECES)
+        orange_pieces_dict = HomePage.create_position_x_element_dict(orange_pieces)
+
+        assert removed_piece_coordinate not in orange_pieces_dict.keys()
+        # once one piece has been taken, must have only eleven orange pieces in the board
+        assert len(orange_pieces_dict) == 11

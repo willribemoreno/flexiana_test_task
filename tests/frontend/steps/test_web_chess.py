@@ -14,13 +14,14 @@ def step_impl(driver):
     home.is_on_focus(driver)
 
 
+@when('he starts a new game')
 @when('he starts a new game by clicking on restart button')
 @given('he starts a new game by clicking on restart button')
 def step_impl(driver):
     home.click_on_restart_btn(driver)
 
 
-@then('all pieces must be returned to original place')
+@then('all pieces must return to default position')
 def step_impl(driver):
     home.check_if_pieces_were_moved_to_default_position(driver)
 
@@ -36,6 +37,7 @@ def step_impl(driver, from_to_moves_orange):
     home.assert_moves(driver, from_to_moves_orange, move_count=1)
 
 
+@when('the computer take his piece')
 @when('the computer makes his move')
 def step_impl():
     time.sleep(2)
@@ -56,3 +58,24 @@ def step_impl(driver, from_to_moves_orange):
 @then('the users piece must be moved correctly')
 def step_impl(driver, from_to_moves_orange):
     home.assert_moves(driver, from_to_moves_orange, move_count=2)
+
+
+@given('he performs two movements')
+def step_impl(driver, from_to_moves_orange):
+    coordinates = (6, 4)
+    home.make_first_move(driver, from_to_moves_orange)
+    home.make_move(driver, from_to_moves_orange, move_count=2, new_coordinates=coordinates)
+
+
+@then('the piece must no longer exist in the board')
+def step_impl(driver, from_to_moves_orange):
+    home.assert_taken_piece_removal(driver, from_to_moves_orange, count=2)
+
+
+@given('he performs some movements')
+def step_impl(driver, from_to_moves_orange):
+    coordinates = (6, 4)
+    home.make_first_move(driver, from_to_moves_orange)
+    home.make_move(driver, from_to_moves_orange, move_count=2, new_coordinates=coordinates)
+    home.assert_taken_piece_removal(driver, from_to_moves_orange, count=2)
+
